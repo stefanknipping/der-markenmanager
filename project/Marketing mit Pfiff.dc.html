@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#08070d;color:#ECEAF6;font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:#a78bfa;color:#0a0a12}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#08070d}
+::-webkit-scrollbar-thumb{background:#2a2640;border-radius:10px}
+@media(max-width:860px){[data-nav-links]{display:none!important}[data-burger]{display:flex!important}}
+@media(min-width:861px){[data-burger]{display:none!important}}
+</style>
+</helmet>
+<div style="position:relative;--g1:{{ g1 }};--g2:{{ g2 }}">
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:15px 32px;background:rgba(8,7,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)">
+  <div data-target="hero" onClick="{{ go }}" style="cursor:pointer;font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:-.01em">Marketing mit <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Pfiff.</span></div>
+  <div data-nav-links style="display:flex;align-items:center;gap:28px">
+    <span data-target="vorteile" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;color:#bdb8d0" style-hover="color:#ffffff">Vorteile</span>
+    <span data-target="leistungen" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;color:#bdb8d0" style-hover="color:#ffffff">Leistungen</span>
+    <span data-target="referenzen" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;color:#bdb8d0" style-hover="color:#ffffff">Referenzen</span>
+    <span data-target="ablauf" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;color:#bdb8d0" style-hover="color:#ffffff">Ablauf</span>
+    <span data-target="ueber" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;color:#bdb8d0" style-hover="color:#ffffff">Über mich</span>
+    <span data-target="kontakt" onClick="{{ go }}" style="cursor:pointer;font-size:14.5px;font-weight:700;color:#0a0a12;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));padding:10px 18px;border-radius:999px">Kontakt</span>
+  </div>
+  <div data-burger onClick="{{ toggleMenu }}" style="display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px">
+    <span style="width:24px;height:2px;background:#fff;border-radius:2px"></span>
+    <span style="width:24px;height:2px;background:#fff;border-radius:2px"></span>
+    <span style="width:24px;height:2px;background:#fff;border-radius:2px"></span>
+  </div>
+</nav>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:49;background:rgba(8,7,13,.97);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px">
+    <span data-target="vorteile" onClick="{{ go }}" style="font-family:'Space Grotesk';font-size:26px;cursor:pointer">Vorteile</span>
+    <span data-target="leistungen" onClick="{{ go }}" style="font-family:'Space Grotesk';font-size:26px;cursor:pointer">Leistungen</span>
+    <span data-target="referenzen" onClick="{{ go }}" style="font-family:'Space Grotesk';font-size:26px;cursor:pointer">Referenzen</span>
+    <span data-target="ablauf" onClick="{{ go }}" style="font-family:'Space Grotesk';font-size:26px;cursor:pointer">Ablauf</span>
+    <span data-target="ueber" onClick="{{ go }}" style="font-family:'Space Grotesk';font-size:26px;cursor:pointer">Über mich</span>
+    <span data-target="kontakt" onClick="{{ go }}" style="font-family:'Space Grotesk';font-weight:700;font-size:22px;cursor:pointer;color:#0a0a12;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));padding:14px 30px;border-radius:999px">Kontakt aufnehmen</span>
+  </div>
+</sc-if>
+
+<section id="hero" data-screen-label="Hero" style="position:relative;overflow:hidden;padding:148px 32px 96px">
+  <sc-if value="{{ showGlows }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;top:-140px;left:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,#7c3aed,transparent 70%);filter:blur(110px);opacity:.5;pointer-events:none;z-index:0"></div>
+    <div style="position:absolute;bottom:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#22d3ee,transparent 70%);filter:blur(120px);opacity:.32;pointer-events:none;z-index:0"></div>
+  </sc-if>
+  <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:52px;align-items:center">
+    <div>
+      <div style="display:inline-flex;gap:10px;align-items:center;font-family:'Space Grotesk';font-size:12px;letter-spacing:.22em;color:#cfcadf;border:1px solid rgba(255,255,255,.16);padding:8px 16px;border-radius:999px;margin-bottom:28px">STRATEGIE&nbsp;·&nbsp;KREATION&nbsp;·&nbsp;UMSETZUNG</div>
+      <h1 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(46px,7vw,86px);line-height:1.03;letter-spacing:.01em;margin:0 0 22px">Marketing mit <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Pfiff.</span><br>Die flexible Alternative zur eigenen <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Marketingabteilung.</span></h1>
+      <p style="font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:#bdb8d0;max-width:540px;margin:0 0 34px">Strategie, Design und Umsetzung aus einer Hand für den Mittelstand. Ohne Lohnnebenkosten. Ohne Ausfallrisiko. <span style="color:#fff;font-weight:600">100 % produktiv.</span></p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <button data-target="kontakt" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));color:#0a0a12;font-family:'Space Grotesk';font-weight:700;font-size:16px;padding:17px 28px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 14px 44px rgba(124,58,237,.4);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 18px 54px rgba(124,58,237,.55)">Jetzt kostenloses Potenzialgespräch vereinbaren <span style="font-size:19px">→</span></button>
+      </div>
+    </div>
+    <div style="position:relative;animation:floaty 7s ease-in-out infinite">
+      <div style="aspect-ratio:1/1.12;border-radius:26px;padding:2px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));box-shadow:0 30px 80px rgba(0,0,0,.5)">
+        <div style="width:100%;height:100%;border-radius:24px;background:#0d0b16;background-image:repeating-linear-gradient(135deg,rgba(167,139,250,.07) 0 14px,transparent 14px 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+          <div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));opacity:.85"></div>
+          <div style="font-family:monospace;font-size:13px;color:#8a85a0;letter-spacing:.04em">[ Portrait Stefan Knipping ]</div>
+          <div style="font-family:monospace;font-size:11px;color:#5f5b73">am Schreibtisch · Illustration</div>
+        </div>
+      </div>
+      <div style="position:absolute;top:20px;right:-16px;background:#0d0b16;border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:13px 17px;font-family:'Space Grotesk';font-weight:600;font-size:12px;line-height:1.85;box-shadow:0 22px 54px rgba(0,0,0,.55)">
+        <div style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">STRATEGIE</div>
+        <div style="color:#cfcadf">KREATION</div>
+        <div style="color:#cfcadf">UMSETZUNG</div>
+      </div>
+      <div style="position:absolute;bottom:-18px;left:-18px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));color:#0a0a12;font-family:'Space Grotesk';font-weight:700;font-size:15px;padding:11px 18px;border-radius:13px;transform:rotate(-7deg);box-shadow:0 16px 40px rgba(124,58,237,.4)">Pfiff!</div>
+    </div>
+  </div>
+</section>
+
+<section id="tools" style="padding:34px 32px 54px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)">
+  <div style="max-width:1180px;margin:0 auto">
+    <p style="text-align:center;font-family:'Space Grotesk';font-size:12.5px;letter-spacing:.16em;color:#8a85a0;text-transform:uppercase;margin:0 0 30px">Zertifiziert, vernetzt &amp; vertraut mit den besten Tools</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 44px">
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">Google&nbsp;Street&nbsp;View<span style="color:#5f5b73;font-weight:400"> · trusted</span></span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">Local&nbsp;Guides</span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">Mehrwert&nbsp;&amp;&nbsp;Partner</span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">multimedia</span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">GALLO&nbsp;MEDIA</span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">Adobe&nbsp;Creative&nbsp;Cloud</span>
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:16px;color:#8a85a0;transition:color .2s" style-hover="color:#ffffff">ChatGPT</span>
+    </div>
+  </div>
+</section>
+
+<section id="problem" style="padding:96px 32px">
+  <div style="max-width:920px;margin:0 auto;text-align:center;animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0% cover 28%">
+    <div style="width:60px;height:60px;border-radius:18px;margin:0 auto 30px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(124,58,237,.35)"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#0c0a14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 18h5.6M10.2 21h3.6M12 3a6 6 0 0 0-3.6 10.8c.55.4.9 1.05.9 1.7V16h5.4v-.5c0-.65.35-1.3.9-1.7A6 6 0 0 0 12 3z"/></svg></div>
+    <p style="font-family:'Space Grotesk';font-weight:500;font-size:clamp(22px,3vw,33px);line-height:1.38;letter-spacing:-.01em;margin:0">Gutes Marketing braucht <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Kontinuität.</span> Doch eine Vollzeitkraft ist teuer, bindet Ressourcen und fällt durch Urlaub oder Krankheit oft aus.</p>
+    <p style="font-size:18px;color:#bdb8d0;margin:26px auto 0;line-height:1.6;max-width:680px">Die Lösung? Ein externer Markenmanager, der wie ein interner Mitarbeiter agiert – <span style="color:#fff;font-weight:600">aber nur das kostet, was er tatsächlich leistet.</span></p>
+  </div>
+</section>
+
+<section id="vorteile" data-screen-label="Vorteile" style="padding:60px 32px 96px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:680px;margin:0 0 48px;animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Ihre Vorteile</div>
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.01em;margin:12px 0 0">Warum der Markenmanager sich rechnet.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px">
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(167,139,250,.4)">
+        <div style="font-family:'Bebas Neue';font-weight:400;font-size:56px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">−50&#8201;%</div>
+        <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.06em;color:#8a85a0;margin-top:4px">KOSTENERSPARNIS</div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:27px;letter-spacing:.012em;margin:20px 0 18px">Bis zu 50 % Kostenersparnis</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Keine Arbeitgeber-Bruttokosten &amp; Sozialabgaben.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Urlaubsentgelt, Lohnfortzahlung bei Krankheit und Weiterbildungskosten entfallen komplett.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Sie zahlen nur die reine, produktive Leistung (1 Tag = 7 Stunden +/− 1 Std.).</span></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(167,139,250,.4)">
+        <div style="font-family:'Bebas Neue';font-weight:400;font-size:56px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">1–10</div>
+        <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.06em;color:#8a85a0;margin-top:4px">TAGE / MONAT, FLEXIBEL</div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:27px;letter-spacing:.012em;margin:20px 0 18px">Maximale Flexibilität &amp; Skalierbarkeit</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Bedarfsgerechte Monatskontingente (1 bis max. 10 Tage / Monat).</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Sofortiges Upgrade in ein höheres Paket bei Spitzenbelastungen (z.B. Messevorbereitung) jederzeit möglich.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Kurzfristig planbar (mit 3 Monaten Kündigungsfrist innerhalb der Mindestlaufzeit).</span></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(167,139,250,.4)">
+        <div style="font-family:'Bebas Neue';font-weight:400;font-size:56px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">20+</div>
+        <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.06em;color:#8a85a0;margin-top:4px">JAHRE ERFAHRUNG × KI</div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:27px;letter-spacing:.012em;margin:20px 0 18px">Geballte Kompetenz &amp; KI-Effizienz</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Über 20 Jahre Berufserfahrung treffen auf modernste KI-gestützte Arbeitsweisen.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Vollständige Infrastruktur vorhanden (keine Arbeitsplatz- oder Softwarekosten für Sie).</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Zugriff auf ein exklusives Expertennetzwerk bei Spezialaufgaben.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="referenzen" data-screen-label="Referenzen" style="padding:60px 32px 96px;border-top:1px solid rgba(255,255,255,.06)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:720px;margin:0 0 40px;animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Referenzkunden</div>
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.01em;margin:12px 0 16px">Aus Handel, Industrie, Kirche &amp; Mittelstand.</h2>
+      <p style="font-size:16px;line-height:1.6;color:#bdb8d0;margin:0">Mehr als 20 Jahre Erfahrung in Marketing, Design und Markenkommunikation für Mittelstand, Handel, Bildung, Kirche und Dienstleistungsunternehmen.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px">
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:700;font-size:17px;color:#cfcadf;text-align:center">MARKTKAUF</span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:700;font-size:16px;color:#cfcadf;text-align:center">DMA<br><span style="font-weight:400;font-size:11px;color:#8a85a0">Höxter-Vörden</span></span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:600;font-size:15px;color:#cfcadf;text-align:center">OPTIK<br>SCHILLER</span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:500;font-size:13.5px;color:#cfcadf;text-align:center">Pastoralverbund<br><span style="color:#8a85a0">Paderborn</span></span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:700;font-size:16px;color:#cfcadf;text-align:center">Lieferheld</span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:600;font-size:14.5px;color:#cfcadf;text-align:center">mobilcom·debitel</span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#cfcadf;text-align:center">create<br><span style="font-weight:400;font-size:11px;color:#8a85a0">Holzminden</span></span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:600;font-size:13.5px;color:#cfcadf;text-align:center">Malermeister<br>Schmidt Stahle</span></div>
+      <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 16px;display:flex;align-items:center;justify-content:center;min-height:84px;transition:border-color .2s,background .2s" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><span style="font-family:'Space Grotesk';font-weight:600;font-size:14px;color:#cfcadf;text-align:center">Kita Regenbogen<br><span style="font-weight:400;font-size:11px;color:#8a85a0">Höxter</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen" data-screen-label="Leistungen" style="padding:60px 32px 96px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:680px;margin:0 0 48px;animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Leistungen · Module</div>
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.01em;margin:12px 0 0">Drei Module. Ein Markenmanager.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px">
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(34,211,238,.4)">
+        <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 10px 30px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0c0a14" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.1" fill="#0c0a14" stroke="none"/></svg></div><div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:.1em;color:#8a85a0">MODUL</span><span style="font-family:'Bebas Neue';font-weight:400;font-size:48px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">01</span></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:28px;letter-spacing:.012em;margin:0 0 20px">Strategie &amp; Branding</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Marketingkonzeption &amp; Kampagnenplanung</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Corporate Design &amp; Logo-Entwicklung</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Markenpositionierung</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Wettbewerbsanalyse &amp; Marktbeobachtung</span></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(34,211,238,.4)">
+        <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 10px 30px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0c0a14" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8.5" y1="8" x2="15.5" y2="8"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="16" x2="13" y2="16"/></svg></div><div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:.1em;color:#8a85a0">MODUL</span><span style="font-family:'Bebas Neue';font-weight:400;font-size:48px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">02</span></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:28px;letter-spacing:.012em;margin:0 0 20px">Print &amp; Digitale Medien</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Kataloge, Broschüren &amp; Visitenkarten</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Webseiteninhalte &amp; digitale Präsentationen</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Messe- und Eventkommunikation</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Foto- &amp; Videoproduktion</span></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:34px;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-6px);border-color:rgba(34,211,238,.4)">
+        <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 10px 30px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0c0a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a7.5 7.5 0 0 1-10.8 6.75L4.5 20l1.3-4.3A7.5 7.5 0 1 1 20.5 12z"/></svg></div><div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:.1em;color:#8a85a0">MODUL</span><span style="font-family:'Bebas Neue';font-weight:400;font-size:48px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">03</span></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:28px;letter-spacing:.012em;margin:0 0 20px">Content &amp; Projektsteuerung</h3>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Social Media Inhalte (visuell &amp; konzeptionell)</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Erstellung von Vertriebsunterlagen</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Kreativkoordination &amp; Steuerung von Partnern</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="margin-top:8px;width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))"></span><span style="font-size:15px;line-height:1.55;color:#bdb8d0">Redaktion &amp; Textkonzeption</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats" style="padding:80px 32px;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.06)">
+  <sc-if value="{{ showGlows }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;top:50%;left:10%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,#7c3aed,transparent 70%);filter:blur(130px);opacity:.28;pointer-events:none;transform:translateY(-50%)"></div>
+  </sc-if>
+  <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto">
+    <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.01em;margin:0 0 6px">So viel arbeiten 37 Stunden <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">wirklich.</span></h2>
+    <div id="stats-anchor" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:54px;align-items:center;margin-top:44px">
+      <div style="display:flex;flex-wrap:wrap;gap:36px;align-items:center;justify-content:center">
+        <div style="position:relative;width:240px;height:240px;flex:0 0 auto">
+          <div style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg, #a78bfa 0deg, #22d3ee 223deg, #6d6390 223deg 270deg, #574f73 270deg 288deg, #463f5e 288deg 310deg, #38324a 310deg 324deg, #2b2738 324deg 360deg);-webkit-mask:radial-gradient(circle, transparent 60%, #000 61%);mask:radial-gradient(circle, transparent 60%, #000 61%)"></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+            <div style="font-family:'Space Grotesk';font-size:14px;color:#9b96b3">ca.</div>
+            <div style="font-family:'Bebas Neue';font-weight:400;font-size:60px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">{{ count }}</div>
+            <div style="font-family:'Space Grotesk';font-size:14px;letter-spacing:.2em;color:#cfcadf">STUNDEN</div>
+            <div style="font-size:11px;color:#9b96b3;letter-spacing:.22em">NETTO</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:linear-gradient(120deg,#a78bfa,#22d3ee)"></span><span style="font-size:14.5px;color:#dcd9ea">Netto-Arbeitszeit ca. 1.500&nbsp;h</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:#6d6390"></span><span style="font-size:14.5px;color:#bdb8d0">Urlaub</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:#574f73"></span><span style="font-size:14.5px;color:#bdb8d0">Krankheit</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:#463f5e"></span><span style="font-size:14.5px;color:#bdb8d0">Feiertage</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:#38324a"></span><span style="font-size:14.5px;color:#bdb8d0">Weiterbildung</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:13px;height:13px;border-radius:4px;flex:0 0 auto;background:#2b2738"></span><span style="font-size:14.5px;color:#bdb8d0">Sonstiges / Ausfallzeiten</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <p style="font-size:17px;line-height:1.6;color:#bdb8d0;margin:0">Ein Festangestellter (37-Std.-Woche) leistet nach Abzug von Urlaub, Krankheit, Feiertagen und Weiterbildung ca. <span style="color:#fff;font-weight:600">1.500 Netto-Arbeitsstunden</span> im Jahr.</p>
+        <div style="background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(34,211,238,.1));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px;display:flex;gap:22px;align-items:center">
+          <div>
+            <div style="font-family:'Space Grotesk';font-weight:700;font-size:18px;margin-bottom:8px">Der Markenmanager</div>
+            <p style="font-size:15px;line-height:1.55;color:#cfcadf;margin:0">Bietet garantierte Produktivität. Keine bezahlten Leerläufe. Um auf die gleiche Netto-Arbeitszeit zu kommen, sparen Sie bei uns <span style="color:#fff;font-weight:600">zehntausende Euro</span> an Fixkosten und Einarbeitung.</p>
+          </div>
+          <div style="font-family:'Bebas Neue';font-weight:400;font-size:74px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent;flex:0 0 auto">€</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf" data-screen-label="Ablauf" style="padding:80px 32px 96px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:720px;margin:0 0 44px;animation:rise .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">So funktioniert die Zusammenarbeit</div>
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.01em;margin:12px 0 0">Der Retainer in drei Schritten.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:22px">
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:30px">
+        <div style="display:flex;align-items:center;gap:16px"><div style="width:48px;height:48px;border-radius:13px;flex:0 0 auto;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="#0c0a14" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg></div><div style="font-family:'Bebas Neue';font-weight:400;font-size:52px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">1</div></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:25px;letter-spacing:.012em;margin:14px 0 10px">Bedarf ermitteln</h3>
+        <p style="font-size:15px;line-height:1.55;color:#bdb8d0;margin:0">Wir legen gemeinsam fest, wie viele Tage (1–10) Sie pro Monat benötigen.</p>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:30px">
+        <div style="display:flex;align-items:center;gap:16px"><div style="width:48px;height:48px;border-radius:13px;flex:0 0 auto;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="#0c0a14" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="9" y1="3" x2="9" y2="6"/><line x1="15" y1="3" x2="15" y2="6"/></svg></div><div style="font-family:'Bebas Neue';font-weight:400;font-size:52px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">2</div></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:25px;letter-spacing:.012em;margin:14px 0 10px">Laufzeit wählen</h3>
+        <p style="font-size:15px;line-height:1.55;color:#bdb8d0;margin:0">12, 24 oder 36 Monate – je länger die Partnerschaft, desto günstiger der Tagessatz.</p>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:30px">
+        <div style="display:flex;align-items:center;gap:16px"><div style="width:48px;height:48px;border-radius:13px;flex:0 0 auto;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="#0c0a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16.5V8.5M12 8.5l-3.2 3.2M12 8.5l3.2 3.2"/></svg></div><div style="font-family:'Bebas Neue';font-weight:400;font-size:52px;line-height:1;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">3</div></div>
+        <h3 style="font-family:'Bebas Neue';font-weight:400;font-size:25px;letter-spacing:.012em;margin:14px 0 10px">Loslegen</h3>
+        <p style="font-size:15px;line-height:1.55;color:#bdb8d0;margin:0">Feste Betreuung, zentrale Steuerung, volle Transparenz.</p>
+      </div>
+    </div>
+    <div style="border-radius:20px;padding:2px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee))">
+      <div style="background:#0c0a14;border-radius:18px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between">
+        <p style="font-size:16px;line-height:1.6;color:#dcd9ea;margin:0;max-width:560px">Je länger wir zusammenarbeiten, <span style="color:#fff;font-weight:600">desto günstiger</span> wird der effektive Tagessatz. Einzelne Zusatzbuchungen sind flexibel möglich.</p>
+        <p style="font-size:15px;line-height:1.55;color:#bdb8d0;margin:0;max-width:320px">Ein Wechsel nach oben geht sofort, ein Wechsel nach unten mit 3 Monaten Vorlauf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber" data-screen-label="Über mich" style="padding:60px 32px 96px;border-top:1px solid rgba(255,255,255,.06)">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:52px;align-items:center">
+    <div style="max-width:360px;justify-self:center;width:100%">
+      <div style="aspect-ratio:1/1.1;border-radius:24px;padding:2px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee))">
+        <div style="width:100%;height:100%;border-radius:22px;background:#0d0b16;background-image:repeating-linear-gradient(135deg,rgba(167,139,250,.07) 0 14px,transparent 14px 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+          <div style="width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));opacity:.85"></div>
+          <div style="font-family:monospace;font-size:13px;color:#8a85a0">[ Portrait Stefan ]</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Über den Markenmanager</div>
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(34px,4.6vw,56px);line-height:1.08;letter-spacing:.01em;margin:12px 0 20px">Hallo, ich bin Stefan.</h2>
+      <p style="font-size:17px;line-height:1.65;color:#bdb8d0;margin:0 0 24px;max-width:560px">Ich bin in der Region Höxter / Holzminden verwurzelt und seit über 20 Jahren in der Marketing- und Designwelt zuhause – vom Art Director zum selbstständigen Markenmanager. Ich kombiniere Strategie, Kreativität und ein gutes Gespür für Menschen und Marken – <span style="color:#fff;font-weight:600">immer mit Pfiff.</span></p>
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+        <span style="font-family:'Caveat',cursive;font-weight:700;font-size:34px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Marketing mit Pfiff.</span>
+        <span style="font-family:'Caveat',cursive;font-size:26px;color:#cfcadf">– Stefan Knipping</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="padding:0 32px 80px">
+  <div style="max-width:1180px;margin:0 auto">
+    <p style="font-size:16px;color:#bdb8d0;margin:0 0 22px;text-align:center">Aktuelle News &amp; Einblicke – folgen Sie mir für Projekte, Tipps und Neuigkeiten rund um Marketing, Design &amp; KI.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <div style="border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:20px;text-align:center;transition:border-color .2s,background .2s;cursor:pointer" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><div style="width:54px;height:54px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="#0c0a14"><path d="M13.5 21v-7h2.34l.35-2.72H13.5V9.54c0-.79.22-1.32 1.34-1.32h1.43V5.78c-.25-.03-1.1-.11-2.08-.11-2.06 0-3.47 1.26-3.47 3.56v1.99H8.3v2.72h2.42V21z"/></svg></div><div style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Facebook</div><div style="font-size:13px;color:#8a85a0;margin-top:4px">Folgen Sie uns</div></div>
+      <div style="border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:20px;text-align:center;transition:border-color .2s,background .2s;cursor:pointer" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><div style="width:54px;height:54px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0c0a14" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#0c0a14" stroke="none"/></svg></div><div style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Instagram</div><div style="font-size:13px;color:#8a85a0;margin-top:4px">Behind the Scenes</div></div>
+      <div style="border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:20px;text-align:center;transition:border-color .2s,background .2s;cursor:pointer" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><div style="width:54px;height:54px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="#0c0a14"><path d="M6.94 8.5H4.3V20h2.64zM5.62 4.3a1.53 1.53 0 1 0 0 3.06 1.53 1.53 0 0 0 0-3.06zM20 20h-2.63v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V20H10.7V8.5h2.53v1.57h.04c.35-.67 1.21-1.37 2.5-1.37 2.67 0 3.16 1.76 3.16 4.05z"/></svg></div><div style="font-family:'Space Grotesk';font-weight:700;font-size:16px">LinkedIn</div><div style="font-size:13px;color:#8a85a0;margin-top:4px">Netzwerk &amp; Projekte</div></div>
+      <div style="border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:20px;text-align:center;transition:border-color .2s,background .2s;cursor:pointer" style-hover="border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.05)"><div style="width:54px;height:54px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1,#a78bfa),var(--g2,#22d3ee));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(124,58,237,.3)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0c0a14" stroke-width="2"><path d="M12 21s6.5-5 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 16 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg></div><div style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Google Business</div><div style="font-size:13px;color:#8a85a0;margin-top:4px">Eintrag &amp; Bewertungen</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" data-screen-label="Kontakt" style="padding:40px 32px 100px">
+  <div style="max-width:980px;margin:0 auto;border-radius:30px;padding:64px 40px;text-align:center;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(34,211,238,.13));border:1px solid rgba(255,255,255,.11);position:relative;overflow:hidden">
+    <sc-if value="{{ showGlows }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;top:-100px;right:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#a78bfa,transparent 70%);filter:blur(90px);opacity:.4;pointer-events:none"></div>
+    </sc-if>
+    <div style="position:relative;z-index:2">
+      <h2 style="font-family:'Bebas Neue';font-weight:400;font-size:clamp(38px,5vw,64px);line-height:1.05;letter-spacing:.01em;margin:0 0 18px">Bereit für Marketing,<br>das sich <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">rechnet?</span></h2>
+      <p style="font-size:18px;color:#cfcadf;max-width:620px;margin:0 auto 34px;line-height:1.6">Lassen Sie uns bei einem kleinen Snack besprechen, wie viel Zeit und Geld Ihr Unternehmen mit dem Markenmanager sparen kann.</p>
+      <button style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));color:#0a0a12;font-family:'Space Grotesk';font-weight:700;font-size:17px;padding:18px 32px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 14px 44px rgba(124,58,237,.45);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 18px 54px rgba(124,58,237,.6)">Jetzt Termin vereinbaren (Calendly) <span style="font-size:19px">→</span></button>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,.07);padding:42px 32px 30px">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:18px">Marketing mit <span style="background:linear-gradient(120deg,var(--g1,#a78bfa),var(--g2,#22d3ee));-webkit-background-clip:text;background-clip:text;color:transparent">Pfiff.</span></div>
+      <div style="font-size:13px;color:#7d7891;margin-top:4px">Der Markenmanager · Stefan Knipping</div>
+    </div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#bdb8d0">
+      <span style="cursor:pointer;transition:color .2s" style-hover="color:#ffffff">Impressum</span>
+      <span style="cursor:pointer;transition:color .2s" style-hover="color:#ffffff">Datenschutz</span>
+      <span style="cursor:pointer;transition:color .2s" style-hover="color:#ffffff">Kontakt</span>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:#7d7891">
+      <span>37671 Höxter</span>
+      <span>0171 1234567</span>
+      <span>mail@dermarkenmanager.de</span>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:24px auto 0;font-size:12.5px;color:#5f5b73;border-top:1px solid rgba(255,255,255,.05);padding-top:18px">© 2026 Stefan Knipping · Der Markenmanager · Marketing mit Pfiff.</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Violett → Türkis&quot;,&quot;Magenta → Türkis&quot;,&quot;Indigo → Cyan&quot;],&quot;default&quot;:&quot;Violett → Türkis&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;showGlows&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+class Component extends DCLogic {
+  state = { count: 0, menuOpen: false };
+  started = false;
+
+  componentDidMount() {
+    const anchor = document.getElementById('stats-anchor');
+    if (anchor && 'IntersectionObserver' in window) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !this.started) {
+            this.started = true;
+            this.animate();
+          }
+        });
+      }, { threshold: 0.35 });
+      this.io.observe(anchor);
+    } else {
+      this.animate();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+  }
+
+  animate() {
+    const dur = 1700, t0 = performance.now(), target = 1500;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      this.setState({ count: Math.round(target * eased) });
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  scrollTo = (ev) => {
+    const id = ev.currentTarget.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    this.setState({ menuOpen: false });
+  };
+
+  toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+
+  themes = {
+    'Violett → Türkis': ['#a78bfa', '#22d3ee'],
+    'Magenta → Türkis': ['#e879f9', '#2dd4bf'],
+    'Indigo → Cyan': ['#818cf8', '#67e8f9'],
+  };
+
+  renderVals() {
+    const th = this.themes[this.props.theme] || this.themes['Violett → Türkis'];
+    return {
+      count: this.state.count.toLocaleString('de-DE'),
+      menuOpen: this.state.menuOpen,
+      showGlows: this.props.showGlows !== false,
+      g1: th[0],
+      g2: th[1],
+      go: this.scrollTo,
+      toggleMenu: this.toggleMenu,
+    };
+  }
+}
+</script>
+</body>
+</html>
