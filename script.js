@@ -80,9 +80,9 @@
     animateCount();
   }
 
-  // ── Proof stats counters ──
-  document.querySelectorAll('[data-proof]').forEach((el) => {
-    const target = parseInt(el.getAttribute('data-proof'), 10);
+  // ── Metrics counters (integer) ──
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const target = parseInt(el.getAttribute('data-count'), 10);
     const prefix = el.getAttribute('data-prefix') || '';
     const suffix = el.getAttribute('data-suffix') || '';
     let started = false;
@@ -114,9 +114,9 @@
     }
   });
 
-  // decimal proof stat (2.5x)
-  document.querySelectorAll('[data-proof-decimal]').forEach((el) => {
-    const target = parseFloat(el.getAttribute('data-proof-decimal'));
+  // ── Metrics counters (decimal) ──
+  document.querySelectorAll('[data-count-decimal]').forEach((el) => {
+    const target = parseFloat(el.getAttribute('data-count-decimal'));
     const prefix = el.getAttribute('data-prefix') || '';
     const suffix = el.getAttribute('data-suffix') || '';
     let started = false;
