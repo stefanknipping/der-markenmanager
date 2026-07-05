@@ -12,17 +12,21 @@
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
   <defs>
     <linearGradient id="g-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:var(--g1)"/>
-      <stop offset="100%" style="stop-color:var(--g2)"/>
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
     </linearGradient>
   </defs>
 </svg>
 
-<nav class="nav">
-  <a href="#hero" class="nav__brand" data-target="hero">Marketing mit <span class="grad-text">Pfiff.</span></a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav__logo" data-target="hero">
+    <img src="assets/logo.png" alt="Marketing mit Pfiff." class="nav__logo-img" onerror="this.style.display='none'">
+    <span class="nav__logo-text">Marketing mit <span class="grad-text">Pfiff.</span></span>
+  </a>
   <div class="nav__links">
     <span class="nav__link" data-target="vorteile">Vorteile</span>
     <span class="nav__link" data-target="leistungen">Leistungen</span>
@@ -45,111 +49,128 @@
   <span class="mobile-menu__link mobile-menu__link--cta" data-target="kontakt">Kontakt aufnehmen</span>
 </div>
 
+<!-- HERO -->
 <section id="hero" class="hero">
-  <div class="glow glow--hero-a" aria-hidden="true"></div>
-  <div class="glow glow--hero-b" aria-hidden="true"></div>
-  <div class="hero__grid">
+  <div class="blob blob--a" aria-hidden="true"></div>
+  <div class="blob blob--b" aria-hidden="true"></div>
+  <div class="hero__inner container">
     <div class="hero__content">
-      <div class="eyebrow-pill">STRATEGIE&nbsp;·&nbsp;KREATION&nbsp;·&nbsp;UMSETZUNG</div>
-      <h1 class="hero__title">Marketing mit <span class="grad-text">Pfiff.</span><br>Die flexible Alternative zur eigenen <span class="grad-text">Marketingabteilung.</span></h1>
-      <p class="hero__lead">Strategie, Design und Umsetzung aus einer Hand für den Mittelstand. Ohne Lohnnebenkosten. Ohne Ausfallrisiko. <span class="text-strong">100&nbsp;% produktiv.</span></p>
-      <div class="hero__actions">
+      <div class="eyebrow-pill reveal">STRATEGIE&nbsp;·&nbsp;KREATION&nbsp;·&nbsp;UMSETZUNG</div>
+      <h1 class="hero__title reveal delay-1">Marketing mit&nbsp;<span class="grad-text">Pfiff.</span><br>Die flexible Alternative zur eigenen <span class="grad-text">Marketingabteilung.</span></h1>
+      <p class="hero__lead reveal delay-2">Strategie, Design und Umsetzung aus einer Hand für den Mittelstand. Ohne Lohnnebenkosten. Ohne Ausfallrisiko. <strong>100&nbsp;% produktiv.</strong></p>
+      <div class="hero__actions reveal delay-3">
         <a class="btn btn--primary" data-target="kontakt" href="#kontakt">Jetzt kostenloses Potenzialgespräch vereinbaren <span class="btn__arrow">→</span></a>
       </div>
     </div>
-    <div class="hero__art-wrap">
-      <figure class="hero__art" aria-label="Illustration: Stefan Knipping arbeitet konzentriert am Schreibtisch">
-        <svg viewBox="0 0 420 460" fill="none">
-          <!-- desk -->
-          <path d="M40 360h340" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M70 360v60M370 360v60" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round" opacity=".55"/>
-          <!-- laptop -->
-          <path d="M150 300h120v52H150z" stroke="url(#g-grad)" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M140 360h140l8-8H132z" stroke="url(#g-grad)" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M168 318h64M168 332h44" stroke="url(#g-grad)" stroke-width="2.4" stroke-linecap="round" opacity=".6"/>
-          <!-- chair back -->
-          <path d="M150 250c0-42 28-72 60-72s60 30 60 72" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
-          <!-- head -->
-          <circle cx="210" cy="150" r="34" stroke="url(#g-grad)" stroke-width="3"/>
-          <path d="M180 142c4-18 16-30 30-30s26 12 30 30" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
-          <!-- torso / arms reaching to laptop -->
-          <path d="M158 300c4-46 18-72 52-78 34 6 48 32 52 78" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M178 250c10 24 16 36 32 40 16-4 22-16 32-40" stroke="url(#g-grad)" stroke-width="2.6" stroke-linecap="round" opacity=".7"/>
-          <!-- plant -->
-          <g opacity=".9">
-            <path d="M338 360v-30" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
-            <path d="M338 296c-18-6-26-22-22-40 18 2 30 14 32 32M338 296c18-6 26-22 22-40-18 2-30 14-32 32M338 296c-2-22 4-38 14-48 10 10 14 28 8 48" stroke="url(#g-grad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M318 330h40l-6 30h-28z" stroke="url(#g-grad)" stroke-width="3" stroke-linejoin="round"/>
-          </g>
-        </svg>
-      </figure>
-      <div class="hero__tag-card">
-        <div class="grad-text hero__tag-card-line">STRATEGIE</div>
-        <div class="hero__tag-card-line hero__tag-card-line--muted">KREATION</div>
-        <div class="hero__tag-card-line hero__tag-card-line--muted">UMSETZUNG</div>
+    <div class="hero__photo-wrap reveal reveal--scale delay-2">
+      <div class="hero__photo-frame">
+        <img src="assets/stefan-hero.jpg" alt="Stefan Knipping, Der Markenmanager" class="hero__photo" loading="eager">
+        <div class="hero__photo-badge">
+          <span class="grad-text">Pfiff!</span>
+        </div>
       </div>
-      <div class="hero__pfiff-badge">Pfiff!</div>
     </div>
   </div>
+  <div class="hero__scroll-hint" aria-hidden="true"><span></span></div>
 </section>
 
-<section id="tools" class="tools">
+<!-- PROOF STATS -->
+<section id="proof" class="proof">
   <div class="container">
-    <p class="tools__label">Zertifiziert, vernetzt &amp; vertraut mit den besten Tools</p>
-    <div class="tools__row">
-      <span class="tools__item">Google&nbsp;Street&nbsp;View<span class="tools__item-sub"> · trusted</span></span>
-      <span class="tools__item">Local&nbsp;Guides</span>
-      <span class="tools__item">Mehrwert&nbsp;&amp;&nbsp;Partner</span>
-      <span class="tools__item">multimedia</span>
-      <span class="tools__item">GALLO&nbsp;MEDIA</span>
-      <span class="tools__item">Adobe&nbsp;Creative&nbsp;Cloud</span>
-      <span class="tools__item">ChatGPT</span>
+    <div class="proof__grid">
+      <div class="proof__item reveal">
+        <div class="proof__num grad-text" data-proof="73" data-prefix="+" data-suffix="%">+73%</div>
+        <div class="proof__label">Mehr Sichtbarkeit.<br>Mehr Anfragen.</div>
+        <div class="proof__source">mehr Sichtbarkeit durch kontinuierliches Marketing · Quelle: HubSpot</div>
+      </div>
+      <div class="proof__sep" aria-hidden="true"></div>
+      <div class="proof__item reveal delay-1">
+        <div class="proof__num grad-text" data-proof="36" data-prefix="+" data-suffix="%">+36%</div>
+        <div class="proof__label">Höherer Umsatz<br>durch Strategie.</div>
+        <div class="proof__source">höherer Umsatz durch strategisches Marketing · Quelle: CoSchedule</div>
+      </div>
+      <div class="proof__sep" aria-hidden="true"></div>
+      <div class="proof__item reveal delay-2">
+        <div class="proof__num grad-text" data-proof-decimal="2.5" data-prefix="+" data-suffix="x">+2,5x</div>
+        <div class="proof__label">Stärkere Marke.<br>Mehr Vertrauen.</div>
+        <div class="proof__source">mehr Vertrauen durch konsistente Markenkommunikation · Quelle: Lucidpress</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="problem" class="problem">
-  <div class="problem__inner reveal">
-    <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 18h5.6M10.2 21h3.6M12 3a6 6 0 0 0-3.6 10.8c.55.4.9 1.05.9 1.7V16h5.4v-.5c0-.65.35-1.3.9-1.7A6 6 0 0 0 12 3z"/></svg>
-    <p class="problem__title">Gutes Marketing braucht <span class="grad-text">Kontinuität.</span> Doch eine Vollzeitkraft ist teuer, bindet Ressourcen und fällt durch Urlaub oder Krankheit oft aus.</p>
-    <p class="problem__sub">Die Lösung? Ein externer Markenmanager, der wie ein interner Mitarbeiter agiert – <span class="text-strong">aber nur das kostet, was er tatsächlich leistet.</span></p>
+<!-- GOOGLE -->
+<section id="google" class="google">
+  <div class="container">
+    <div class="google__inner reveal">
+      <div class="google__text">
+        <p class="google__lead">Als Ihr externer Markenmanager sorge ich für kontinuierliches, strategisches Marketing – inklusive professioneller Betreuung Ihrer <strong>Google Business Einträge</strong> für maximale Sichtbarkeit.</p>
+      </div>
+      <div class="google__badges">
+        <div class="google__badge reveal delay-1">
+          <svg class="icon icon--badge" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s6.5-5 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 16 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>
+          <div class="google__badge-info">
+            <div class="google__badge-title">Google Street View</div>
+            <div class="google__badge-chip grad-text">trusted</div>
+          </div>
+        </div>
+        <div class="google__badge reveal delay-2">
+          <svg class="icon icon--badge" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="google__badge-info">
+            <div class="google__badge-title">Local Guides</div>
+            <div class="google__badge-chip grad-text">mit Expertenstatus</div>
+          </div>
+        </div>
+        <div class="google__badge reveal delay-3">
+          <svg class="icon icon--badge" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 8l9-5 9 5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="3" y1="13" x2="21" y2="13"/></svg>
+          <div class="google__badge-info">
+            <div class="google__badge-title">Google Business</div>
+            <div class="google__badge-chip grad-text">Erstellung &amp; Pflege</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- VORTEILE -->
 <section id="vorteile" class="section">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Ihre Vorteile</div>
-      <h2 class="h2">Warum der Markenmanager sich rechnet.</h2>
+      <h2 class="h2">Warum der Markenmanager<br>sich rechnet.</h2>
     </div>
     <div class="grid grid--3">
-      <div class="card">
+      <div class="card reveal delay-1">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M3 21v-1a9 9 0 0 1 18 0v1"/></svg>
         <div class="card__stat grad-text">−50&#8201;%</div>
         <div class="card__stat-label">KOSTENERSPARNIS</div>
-        <h3 class="card__title">Bis zu 50 % Kostenersparnis</h3>
+        <h3 class="card__title">Bis zu 50&nbsp;% Kostenersparnis</h3>
         <ul class="bullet-list">
           <li>Keine Arbeitgeber-Bruttokosten &amp; Sozialabgaben.</li>
           <li>Urlaubsentgelt, Lohnfortzahlung bei Krankheit und Weiterbildungskosten entfallen komplett.</li>
           <li>Sie zahlen nur die reine, produktive Leistung (1 Tag = 7 Stunden +/− 1 Std.).</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal delay-2">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
         <div class="card__stat grad-text">1–10</div>
         <div class="card__stat-label">TAGE / MONAT, FLEXIBEL</div>
         <h3 class="card__title">Maximale Flexibilität &amp; Skalierbarkeit</h3>
         <ul class="bullet-list">
           <li>Bedarfsgerechte Monatskontingente (1 bis max. 10 Tage / Monat).</li>
-          <li>Sofortiges Upgrade in ein höheres Paket bei Spitzenbelastungen (z.B. Messevorbereitung) jederzeit möglich.</li>
-          <li>Kurzfristig planbar (mit 3 Monaten Kündigungsfrist innerhalb der Mindestlaufzeit).</li>
+          <li>Sofortiges Upgrade bei Spitzenbelastungen (z.B. Messevorbereitung) jederzeit möglich.</li>
+          <li>Kurzfristig planbar mit 3 Monaten Kündigungsfrist.</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal delay-3">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><path d="M9.2 18h5.6M10.2 21h3.6M12 3a6 6 0 0 0-3.6 10.8c.55.4.9 1.05.9 1.7V16h5.4v-.5c0-.65.35-1.3.9-1.7A6 6 0 0 0 12 3z"/></svg>
         <div class="card__stat grad-text">20+</div>
         <div class="card__stat-label">JAHRE ERFAHRUNG × KI</div>
         <h3 class="card__title">Geballte Kompetenz &amp; KI-Effizienz</h3>
         <ul class="bullet-list">
           <li>Über 20 Jahre Berufserfahrung treffen auf modernste KI-gestützte Arbeitsweisen.</li>
-          <li>Vollständige Infrastruktur vorhanden (keine Arbeitsplatz- oder Softwarekosten für Sie).</li>
+          <li>Vollständige Infrastruktur vorhanden – keine zusätzlichen Kosten für Sie.</li>
           <li>Zugriff auf ein exklusives Expertennetzwerk bei Spezialaufgaben.</li>
         </ul>
       </div>
@@ -157,63 +178,16 @@
   </div>
 </section>
 
-<section id="referenzen" class="section section--bordered">
-  <div class="container">
-    <div class="section-head section-head--wide reveal">
-      <div class="eyebrow">Referenzkunden</div>
-      <h2 class="h2">Aus Handel, Industrie, Kirche &amp; Mittelstand.</h2>
-      <p class="section-desc">Mehr als 20 Jahre Erfahrung in Marketing, Design und Markenkommunikation für Mittelstand, Handel, Bildung, Kirche und Dienstleistungsunternehmen.</p>
-    </div>
-    <div class="logo-grid">
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="28" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="17" fill="url(#g-grad)">M</text></svg>
-        <span class="logo-tile__text">MARKTKAUF</span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="url(#g-grad)">DMA</text></svg>
-        <span class="logo-tile__text">DMA<br><span class="logo-tile__sub">Höxter-Vörden</span></span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">OS</text></svg>
-        <span class="logo-tile__text">OPTIK<br>SCHILLER</span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">P</text></svg>
-        <span class="logo-tile__text logo-tile__text--sm">Pastoralverbund<br><span class="logo-tile__sub">Paderborn</span></span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">L</text></svg>
-        <span class="logo-tile__text">Lieferheld</span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="url(#g-grad)">md</text></svg>
-        <span class="logo-tile__text logo-tile__text--sm">mobilcom·debitel</span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">c</text></svg>
-        <span class="logo-tile__text">create<br><span class="logo-tile__sub">Holzminden</span></span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">MS</text></svg>
-        <span class="logo-tile__text logo-tile__text--sm">Malermeister<br>Schmidt Stahle</span>
-      </div>
-      <div class="logo-tile">
-        <svg class="logo-mark" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="url(#g-grad)" stroke-width="2"/><text x="22" y="27" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="url(#g-grad)">KR</text></svg>
-        <span class="logo-tile__text logo-tile__text--sm">Kita Regenbogen<br><span class="logo-tile__sub">Höxter</span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="leistungen" class="section">
+<!-- LEISTUNGEN -->
+<section id="leistungen" class="section section--bordered">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Leistungen · Module</div>
-      <h2 class="h2">Drei Module. Ein Markenmanager.</h2>
+      <h2 class="h2">Drei Module.<br>Ein Markenmanager.</h2>
     </div>
     <div class="grid grid--3">
-      <div class="card">
-        <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.1" fill="url(#g-grad)" stroke="none"/></svg>
+      <div class="card card--module reveal delay-1">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.1" fill="url(#g-grad)" stroke="none"/></svg>
         <div class="card__module-row"><span class="card__module-label">MODUL</span><span class="card__module-num grad-text">01</span></div>
         <h3 class="card__title">Strategie &amp; Branding</h3>
         <ul class="bullet-list">
@@ -223,8 +197,8 @@
           <li>Wettbewerbsanalyse &amp; Marktbeobachtung</li>
         </ul>
       </div>
-      <div class="card">
-        <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8.5" y1="8" x2="15.5" y2="8"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="16" x2="13" y2="16"/></svg>
+      <div class="card card--module reveal delay-2">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8.5" y1="8" x2="15.5" y2="8"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="16" x2="13" y2="16"/></svg>
         <div class="card__module-row"><span class="card__module-label">MODUL</span><span class="card__module-num grad-text">02</span></div>
         <h3 class="card__title">Print &amp; Digitale Medien</h3>
         <ul class="bullet-list">
@@ -234,8 +208,8 @@
           <li>Foto- &amp; Videoproduktion</li>
         </ul>
       </div>
-      <div class="card">
-        <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a7.5 7.5 0 0 1-10.8 6.75L4.5 20l1.3-4.3A7.5 7.5 0 1 1 20.5 12z"/></svg>
+      <div class="card card--module reveal delay-3">
+        <svg class="icon icon--card" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a7.5 7.5 0 0 1-10.8 6.75L4.5 20l1.3-4.3A7.5 7.5 0 1 1 20.5 12z"/></svg>
         <div class="card__module-row"><span class="card__module-label">MODUL</span><span class="card__module-num grad-text">03</span></div>
         <h3 class="card__title">Content &amp; Projektsteuerung</h3>
         <ul class="bullet-list">
@@ -249,101 +223,157 @@
   </div>
 </section>
 
-<section id="stats" class="section section--bordered stats">
-  <div class="glow glow--stats" aria-hidden="true"></div>
-  <div class="container stats__inner">
-    <h2 class="h2">So viel arbeiten 37 Stunden <span class="grad-text">wirklich.</span></h2>
-    <div class="stats__grid" id="stats-anchor">
-      <div class="stats__chart-row">
-        <div class="donut">
-          <div class="donut__ring" id="donut-ring"></div>
-          <div class="donut__center">
-            <div class="donut__ca">ca.</div>
-            <div class="donut__count grad-text" id="hour-count">0</div>
-            <div class="donut__label">STUNDEN</div>
-            <div class="donut__sub">NETTO</div>
-          </div>
-        </div>
-        <div class="legend">
-          <div class="legend__item"><span class="legend__dot legend__dot--grad"></span>Netto-Arbeitszeit ca. 1.500&nbsp;h</div>
-          <div class="legend__item"><span class="legend__dot" style="background:#6d6390"></span>Urlaub</div>
-          <div class="legend__item"><span class="legend__dot" style="background:#574f73"></span>Krankheit</div>
-          <div class="legend__item"><span class="legend__dot" style="background:#463f5e"></span>Feiertage</div>
-          <div class="legend__item"><span class="legend__dot" style="background:#38324a"></span>Weiterbildung</div>
-          <div class="legend__item"><span class="legend__dot" style="background:#2b2738"></span>Sonstiges / Ausfallzeiten</div>
-        </div>
-      </div>
-      <div class="stats__copy">
-        <p class="stats__lead">Ein Festangestellter (37-Std.-Woche) leistet nach Abzug von Urlaub, Krankheit, Feiertagen und Weiterbildung ca. <span class="text-strong">1.500 Netto-Arbeitsstunden</span> im Jahr.</p>
-        <div class="callout">
-          <div>
-            <div class="callout__title">Der Markenmanager</div>
-            <p class="callout__text">Bietet garantierte Produktivität. Keine bezahlten Leerläufe. Um auf die gleiche Netto-Arbeitszeit zu kommen, sparen Sie bei uns <span class="text-strong">zehntausende Euro</span> an Fixkosten und Einarbeitung.</p>
-          </div>
-          <div class="callout__euro grad-text">€</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="ablauf" class="section">
+<!-- REFERENZEN – Marquee -->
+<section id="referenzen" class="referenzen">
   <div class="container">
-    <div class="section-head section-head--wide reveal">
-      <div class="eyebrow">So funktioniert die Zusammenarbeit</div>
-      <h2 class="h2">Der Retainer in drei Schritten.</h2>
+    <div class="section-head reveal">
+      <div class="eyebrow">Referenzkunden</div>
+      <h2 class="h2">Aus Handel, Industrie,<br>Kirche &amp; Mittelstand.</h2>
+      <p class="section-desc">Mehr als 20 Jahre Erfahrung in Marketing, Design und Markenkommunikation.</p>
     </div>
-    <div class="grid grid--3 grid--steps">
-      <div class="card card--step">
-        <div class="card__step-row">
-          <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg>
-          <div class="card__step-num grad-text">1</div>
-        </div>
-        <h3 class="card__title card__title--sm">Bedarf ermitteln</h3>
-        <p class="card__text">Wir legen gemeinsam fest, wie viele Tage (1–10) Sie pro Monat benötigen.</p>
-      </div>
-      <div class="card card--step">
-        <div class="card__step-row">
-          <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="9" y1="3" x2="9" y2="6"/><line x1="15" y1="3" x2="15" y2="6"/></svg>
-          <div class="card__step-num grad-text">2</div>
-        </div>
-        <h3 class="card__title card__title--sm">Laufzeit wählen</h3>
-        <p class="card__text">12, 24 oder 36 Monate – je länger die Partnerschaft, desto günstiger der Tagessatz.</p>
-      </div>
-      <div class="card card--step">
-        <div class="card__step-row">
-          <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16.5V8.5M12 8.5l-3.2 3.2M12 8.5l3.2 3.2"/></svg>
-          <div class="card__step-num grad-text">3</div>
-        </div>
-        <h3 class="card__title card__title--sm">Loslegen</h3>
-        <p class="card__text">Feste Betreuung, zentrale Steuerung, volle Transparenz.</p>
-      </div>
+  </div>
+  <div class="marquee" aria-label="Referenzkunden">
+    <div class="marquee__track">
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">M</div><div class="ref-tile__name">MARKTKAUF</div><div class="ref-tile__cat">Einzelhandel</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">DMA</div><div class="ref-tile__name">DMA</div><div class="ref-tile__cat">Maschinen- &amp; Anlagenbau</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">OS</div><div class="ref-tile__name">OPTIK SCHILLER</div><div class="ref-tile__cat">Einzelhandel</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">P</div><div class="ref-tile__name">PASTORALVERBUND</div><div class="ref-tile__cat">Kirche</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">L</div><div class="ref-tile__name">LIEFERHELD</div><div class="ref-tile__cat">Logistik &amp; Transport</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">md</div><div class="ref-tile__name">MOBILCOM·DEBITEL</div><div class="ref-tile__cat">Telekommunikation</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">c</div><div class="ref-tile__name">CREATE HOLZMINDEN</div><div class="ref-tile__cat">Handel &amp; Dienstleistung</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">MS</div><div class="ref-tile__name">MALERMEISTER SCHMIDT</div><div class="ref-tile__cat">Handwerk</div></div>
+      <div class="ref-tile"><div class="ref-tile__mark grad-text">KR</div><div class="ref-tile__name">KITA REGENBOGEN</div><div class="ref-tile__cat">Bildung</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">M</div><div class="ref-tile__name">MARKTKAUF</div><div class="ref-tile__cat">Einzelhandel</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">DMA</div><div class="ref-tile__name">DMA</div><div class="ref-tile__cat">Maschinen- &amp; Anlagenbau</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">OS</div><div class="ref-tile__name">OPTIK SCHILLER</div><div class="ref-tile__cat">Einzelhandel</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">P</div><div class="ref-tile__name">PASTORALVERBUND</div><div class="ref-tile__cat">Kirche</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">L</div><div class="ref-tile__name">LIEFERHELD</div><div class="ref-tile__cat">Logistik &amp; Transport</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">md</div><div class="ref-tile__name">MOBILCOM·DEBITEL</div><div class="ref-tile__cat">Telekommunikation</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">c</div><div class="ref-tile__name">CREATE HOLZMINDEN</div><div class="ref-tile__cat">Handel &amp; Dienstleistung</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">MS</div><div class="ref-tile__name">MALERMEISTER SCHMIDT</div><div class="ref-tile__cat">Handwerk</div></div>
+      <div class="ref-tile" aria-hidden="true"><div class="ref-tile__mark grad-text">KR</div><div class="ref-tile__name">KITA REGENBOGEN</div><div class="ref-tile__cat">Bildung</div></div>
     </div>
-    <div class="retainer-banner">
-      <div class="retainer-banner__inner">
-        <p class="retainer-banner__text">Je länger wir zusammenarbeiten, <span class="text-strong">desto günstiger</span> wird der effektive Tagessatz. Einzelne Zusatzbuchungen sind flexibel möglich.</p>
-        <p class="retainer-banner__sub">Ein Wechsel nach oben geht sofort, ein Wechsel nach unten mit 3 Monaten Vorlauf.</p>
+  </div>
+  <p class="referenzen__more reveal">Weitere Referenzen auf Anfrage →</p>
+</section>
+
+<!-- BOTTOM 3-COLUMN: STATS + ABLAUF + CTA -->
+<section id="ablauf" class="section section--bordered bottom-section">
+  <div class="blob blob--c" aria-hidden="true"></div>
+  <div class="container">
+    <div class="bottom-grid">
+
+      <!-- Col 1: Donut stats -->
+      <div class="bottom-col reveal">
+        <div class="eyebrow">Fakten</div>
+        <h2 class="h2 h2--sm">So viel arbeiten 37 Stunden <span class="grad-text">wirklich.</span></h2>
+        <div class="donut-wrap" id="stats-anchor">
+          <div class="donut">
+            <div class="donut__ring"></div>
+            <div class="donut__center">
+              <div class="donut__ca">ca.</div>
+              <div class="donut__count grad-text" id="hour-count">0</div>
+              <div class="donut__label">STUNDEN</div>
+              <div class="donut__sub">NETTO</div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend__item"><span class="legend__dot legend__dot--grad"></span>Netto-Arbeitszeit ca. 1.500&nbsp;h</div>
+            <div class="legend__item"><span class="legend__dot" style="background:#6d6390"></span>Urlaub</div>
+            <div class="legend__item"><span class="legend__dot" style="background:#574f73"></span>Krankheit</div>
+            <div class="legend__item"><span class="legend__dot" style="background:#463f5e"></span>Feiertage</div>
+            <div class="legend__item"><span class="legend__dot" style="background:#38324a"></span>Weiterbildung</div>
+            <div class="legend__item"><span class="legend__dot" style="background:#2b2738"></span>Sonstiges</div>
+          </div>
+        </div>
+        <div class="callout">
+          <div class="callout__euro grad-text">€</div>
+          <p class="callout__text">Garantierte Produktivität. Keine bezahlten Leerläufe. Sie sparen <strong>zehntausende Euro</strong> an Fixkosten.</p>
+        </div>
       </div>
+
+      <!-- Col 2: Retainer steps -->
+      <div class="bottom-col reveal delay-2">
+        <div class="eyebrow">So funktioniert die Zusammenarbeit</div>
+        <h2 class="h2 h2--sm">Der Retainer in drei Schritten.</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step__icon-wrap">
+              <svg class="icon icon--step" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg>
+              <span class="step__num grad-text">1</span>
+            </div>
+            <div class="step__body">
+              <h4 class="step__title">Bedarf ermitteln</h4>
+              <p class="step__text">Wir legen gemeinsam fest, wie viele Tage (1–10) Sie pro Monat benötigen.</p>
+            </div>
+          </div>
+          <div class="step__arrow" aria-hidden="true">↓</div>
+          <div class="step">
+            <div class="step__icon-wrap">
+              <svg class="icon icon--step" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="9" y1="3" x2="9" y2="6"/><line x1="15" y1="3" x2="15" y2="6"/></svg>
+              <span class="step__num grad-text">2</span>
+            </div>
+            <div class="step__body">
+              <h4 class="step__title">Laufzeit wählen</h4>
+              <p class="step__text">12, 24 oder 36 Monate – je länger die Partnerschaft, desto günstiger der Tagessatz.</p>
+            </div>
+          </div>
+          <div class="step__arrow" aria-hidden="true">↓</div>
+          <div class="step">
+            <div class="step__icon-wrap">
+              <svg class="icon icon--step" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16.5V8.5M12 8.5l-3.2 3.2M12 8.5l3.2 3.2"/></svg>
+              <span class="step__num grad-text">3</span>
+            </div>
+            <div class="step__body">
+              <h4 class="step__title">Loslegen</h4>
+              <p class="step__text">Feste Betreuung, zentrale Steuerung, volle Transparenz – von Anfang an.</p>
+            </div>
+          </div>
+        </div>
+        <div class="retainer-note">
+          <p>Ein Wechsel nach oben geht <strong>sofort</strong>, ein Wechsel nach unten mit <strong>3 Monaten Vorlauf.</strong></p>
+        </div>
+      </div>
+
+      <!-- Col 3: CTA teaser -->
+      <div class="bottom-col reveal delay-3">
+        <div class="eyebrow">Bereit?</div>
+        <h2 class="h2 h2--sm">Bereit für Marketing,<br>das sich <span class="grad-text">rechnet?</span></h2>
+        <p class="bottom-cta__text">Lassen Sie uns bei einem kleinen Snack besprechen, wie viel Zeit und Geld Ihr Unternehmen mit dem Markenmanager sparen kann.</p>
+        <a class="btn btn--primary" href="https://calendly.com" target="_blank" rel="noopener">Jetzt Termin vereinbaren <span class="btn__arrow">→</span></a>
+        <div class="bottom-cta__icons">
+          <div class="bottom-cta__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="9" y1="3" x2="9" y2="6"/><line x1="15" y1="3" x2="15" y2="6"/></svg>
+            <span>Termin per Calendly</span>
+          </div>
+          <div class="bottom-cta__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Persönlich &amp; unverbindlich</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ÜBER MICH -->
 <section id="ueber" class="section section--bordered">
   <div class="container ueber__grid">
-    <div class="ueber__art-wrap">
-      <figure class="ueber__art" aria-label="Illustration: Porträt Stefan Knipping">
-        <svg viewBox="0 0 240 264" fill="none">
+    <div class="ueber__art-wrap reveal reveal--left">
+      <div class="ueber__photo-frame">
+        <svg viewBox="0 0 240 264" fill="none" class="ueber__svg">
           <circle cx="120" cy="96" r="52" stroke="url(#g-grad)" stroke-width="3"/>
           <path d="M72 88c4-30 22-50 48-50s44 20 48 50" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
           <path d="M30 250c4-58 36-94 90-94s86 36 90 94" stroke="url(#g-grad)" stroke-width="3" stroke-linecap="round"/>
           <path d="M86 138c8 20 16 28 34 30 18-2 26-10 34-30" stroke="url(#g-grad)" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
         </svg>
-      </figure>
+      </div>
     </div>
-    <div>
+    <div class="reveal delay-2">
       <div class="eyebrow">Über den Markenmanager</div>
       <h2 class="h2">Hallo, ich bin Stefan.</h2>
-      <p class="ueber__text">Ich bin in der Region Höxter / Holzminden verwurzelt und seit über 20 Jahren in der Marketing- und Designwelt zuhause – vom Art Director zum selbstständigen Markenmanager. Ich kombiniere Strategie, Kreativität und ein gutes Gespür für Menschen und Marken – <span class="text-strong">immer mit Pfiff.</span></p>
+      <p class="ueber__text">Ich bin in der Region Höxter / Holzminden verwurzelt und seit über 20 Jahren in der Marketing- und Designwelt zuhause – vom Art Director zum selbstständigen Markenmanager. Ich kombiniere Strategie, Kreativität und ein gutes Gespür für Menschen und Marken – <strong>immer mit Pfiff.</strong></p>
       <div class="signature">
         <span class="signature__main grad-text">Marketing mit Pfiff.</span>
         <span class="signature__author">– Stefan Knipping</span>
@@ -352,27 +382,28 @@
   </div>
 </section>
 
+<!-- SOCIAL / NEWS -->
 <section id="news" class="news">
   <div class="container">
-    <p class="news__intro">Aktuelle News &amp; Einblicke – folgen Sie mir für Projekte, Tipps und Neuigkeiten rund um Marketing, Design &amp; KI.</p>
+    <p class="news__intro reveal">Aktuelle News &amp; Einblicke – folgen Sie mir für Projekte, Tipps und Neuigkeiten rund um Marketing, Design &amp; KI.</p>
     <div class="news__grid">
-      <a class="news__item" href="#" aria-label="Facebook">
+      <a class="news__item reveal delay-1" href="#" aria-label="Facebook">
         <svg class="icon icon--social" viewBox="0 0 24 24" fill="url(#g-grad)"><path d="M13.5 21v-7h2.34l.35-2.72H13.5V9.54c0-.79.22-1.32 1.34-1.32h1.43V5.78c-.25-.03-1.1-.11-2.08-.11-2.06 0-3.47 1.26-3.47 3.56v1.99H8.3v2.72h2.42V21z"/></svg>
         <div class="news__item-title">Facebook</div>
         <div class="news__item-sub">Folgen Sie uns</div>
       </a>
-      <a class="news__item" href="#" aria-label="Instagram">
+      <a class="news__item reveal delay-2" href="#" aria-label="Instagram">
         <svg class="icon icon--social" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="url(#g-grad)" stroke="none"/></svg>
         <div class="news__item-title">Instagram</div>
         <div class="news__item-sub">Behind the Scenes</div>
       </a>
-      <a class="news__item" href="#" aria-label="LinkedIn">
+      <a class="news__item reveal delay-3" href="#" aria-label="LinkedIn">
         <svg class="icon icon--social" viewBox="0 0 24 24" fill="url(#g-grad)"><path d="M6.94 8.5H4.3V20h2.64zM5.62 4.3a1.53 1.53 0 1 0 0 3.06 1.53 1.53 0 0 0 0-3.06zM20 20h-2.63v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V20H10.7V8.5h2.53v1.57h.04c.35-.67 1.21-1.37 2.5-1.37 2.67 0 3.16 1.76 3.16 4.05z"/></svg>
         <div class="news__item-title">LinkedIn</div>
         <div class="news__item-sub">Netzwerk &amp; Projekte</div>
       </a>
-      <a class="news__item" href="#" aria-label="Google Business">
-        <svg class="icon icon--social" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2"><path d="M12 21s6.5-5 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 16 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>
+      <a class="news__item reveal delay-3" href="#" aria-label="Google Business">
+        <svg class="icon icon--social" viewBox="0 0 24 24" fill="none" stroke="url(#g-grad)" stroke-width="2" stroke-linecap="round"><path d="M12 21s6.5-5 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 16 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>
         <div class="news__item-title">Google Business</div>
         <div class="news__item-sub">Eintrag &amp; Bewertungen</div>
       </a>
@@ -380,10 +411,12 @@
   </div>
 </section>
 
-<section id="kontakt" class="section kontakt">
-  <div class="kontakt__card">
-    <div class="glow glow--kontakt" aria-hidden="true"></div>
+<!-- KONTAKT CTA -->
+<section id="kontakt" class="kontakt">
+  <div class="kontakt__card reveal">
+    <div class="blob blob--kontakt" aria-hidden="true"></div>
     <div class="kontakt__inner">
+      <div class="eyebrow">Kontakt</div>
       <h2 class="h2 kontakt__title">Bereit für Marketing,<br>das sich <span class="grad-text">rechnet?</span></h2>
       <p class="kontakt__text">Lassen Sie uns bei einem kleinen Snack besprechen, wie viel Zeit und Geld Ihr Unternehmen mit dem Markenmanager sparen kann.</p>
       <a class="btn btn--primary btn--lg" href="https://calendly.com" target="_blank" rel="noopener">Jetzt Termin vereinbaren (Calendly) <span class="btn__arrow">→</span></a>
@@ -391,6 +424,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer__row">
     <div>
